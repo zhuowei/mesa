@@ -1780,13 +1780,17 @@ for plat in $platforms; do
         DEFINES="$DEFINES -DHAVE_ANDROID_PLATFORM"
         ;;
 
+    fbdev)
+        DEFINES="$DEFINES -DHAVE_FBDEV_PLATFORM"
+        ;;
+
     *)
         AC_MSG_ERROR([platform '$plat' does not exist])
         ;;
     esac
 
     case "$plat" in
-    wayland|drm|surfaceless)
+    wayland|drm|surfaceless|fbdev)
         require_libdrm "Platform $plat"
         ;;
     esac
@@ -1810,6 +1814,7 @@ AM_CONDITIONAL(HAVE_PLATFORM_WAYLAND, echo "$platforms" | grep -q 'wayland')
 AM_CONDITIONAL(HAVE_PLATFORM_DRM, echo "$platforms" | grep -q 'drm')
 AM_CONDITIONAL(HAVE_PLATFORM_SURFACELESS, echo "$platforms" | grep -q 'surfaceless')
 AM_CONDITIONAL(HAVE_PLATFORM_ANDROID, echo "$platforms" | grep -q 'android')
+AM_CONDITIONAL(HAVE_PLATFORM_FBDEV, echo "$platforms" | grep -q 'surfaceless')
 
 dnl
 dnl More DRI setup
@@ -2443,7 +2448,7 @@ dnl Surfaceless is an alternative for the last one.
 dnl
 require_basic_egl() {
     case "$with_platforms" in
-        *drm*|*surfaceless*)
+        *drm*|*surfaceless*|*fbdev*)
             ;;
         *)
             AC_MSG_ERROR([$1 requires one of these:

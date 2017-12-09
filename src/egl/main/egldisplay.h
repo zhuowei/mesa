@@ -50,6 +50,7 @@ enum _egl_platform_type {
    _EGL_PLATFORM_ANDROID,
    _EGL_PLATFORM_HAIKU,
    _EGL_PLATFORM_SURFACELESS,
+   _EGL_PLATFORM_FBDEV,
 
    _EGL_NUM_PLATFORMS,
    _EGL_INVALID_PLATFORM = -1
@@ -283,6 +284,12 @@ _eglGetWaylandDisplay(struct wl_display *native_display,
 #ifdef HAVE_SURFACELESS_PLATFORM
 _EGLDisplay*
 _eglGetSurfacelessDisplay(void *native_display,
+                          const EGLint *attrib_list);
+#endif
+
+#ifdef HAVE_FBDEV_PLATFORM
+_EGLDisplay*
+_eglGetFbdevDisplay(int native_display,
                           const EGLint *attrib_list);
 #endif
 

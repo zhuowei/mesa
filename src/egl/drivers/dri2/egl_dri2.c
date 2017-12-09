@@ -876,6 +876,11 @@ dri2_initialize(_EGLDriver *drv, _EGLDisplay *disp)
       ret = dri2_initialize_android(drv, disp);
       break;
 #endif
+#ifdef HAVE_FBDEV_PLATFORM
+   case _EGL_PLATFORM_FBDEV:
+      ret = dri2_initialize_fbdev(drv, disp);
+      break;
+#endif
    default:
       _eglLog(_EGL_WARNING, "No EGL platform enabled.");
       return EGL_FALSE;

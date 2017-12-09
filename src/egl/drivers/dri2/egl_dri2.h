@@ -417,6 +417,9 @@ dri2_initialize_android(_EGLDriver *drv, _EGLDisplay *disp);
 EGLBoolean
 dri2_initialize_surfaceless(_EGLDriver *drv, _EGLDisplay *disp);
 
+EGLBoolean
+dri2_initialize_fbdev(_EGLDriver *drv, _EGLDisplay *disp);
+
 void
 dri2_flush_drawable_for_swapbuffers(_EGLDisplay *disp, _EGLSurface *draw);
 

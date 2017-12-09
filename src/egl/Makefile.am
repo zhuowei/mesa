@@ -104,6 +104,10 @@ libEGL_common_la_LIBADD += $(ANDROID_LIBS)
 dri2_backend_FILES += drivers/dri2/platform_android.c
 endif
 
+if HAVE_PLATFORM_FBDEV
+dri2_backend_FILES += drivers/dri2/platform_fbdev.c
+endif
+
 AM_CFLAGS += \
 	-I$(top_srcdir)/src/loader \
 	-I$(top_builddir)/src/egl/drivers/dri2 \
